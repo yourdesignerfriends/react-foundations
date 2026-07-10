@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Then give the div a unique id so that you can target it later. -->
+    <div id="app"></div>
+    <!-- To write JavaScript inside your HTML file, add a script tag: -->
+    <script type="text/javascript">
+        // Now, inside the script tag, you can use a DOM method, getElementById(), to select the <div> element by its id:
+        const app = document.getElementById('app');
+
+        // You can continue using DOM methods to create a new <h1> element:
+        // Create a new H1 element
+        const header = document.createElement('h1');
+    
+        // Create a new text node for the H1 element
+        const text = 'Develop. Preview. Ship.';
+        const headerContent = document.createTextNode(text);
+    
+        // Append the text to the H1 element
+        header.appendChild(headerContent);
+    
+        // Place the H1 element inside the div
+        app.appendChild(header);
+    </script>
+</body>
+</html>

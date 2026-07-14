@@ -4,28 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- First step: add an import map in the <head> so the browser knows where to load React and ReactDOM from. -->
+    <!-- Added import map entry for react/jsx-runtime so the browser can resolve JSX helper functions used by React. -->
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@latest?dev",
+          "react-dom/client": "https://esm.sh/react-dom@latest/client?dev",
+          "react/jsx-runtime": "https://esm.sh/react@latest/jsx-runtime?dev"
+        }
+      }
+    </script>
+    <!-- Added Babel Standalone script so the browser can compile JSX and modern JavaScript without a build step -->
+    <script src="https://unpkg.com/@babel/standalone@latest/babel.min.js"></script>
 </head>
 <body>
     <!-- Then give the div a unique id so that you can target it later. -->
     <div id="app"></div>
-    <!-- To write JavaScript inside your HTML file, add a script tag: -->
-    <script type="text/javascript">
-        // Now, inside the script tag, you can use a DOM method, getElementById(), to select the <div> element by its id:
-        const app = document.getElementById('app');
-
-        // You can continue using DOM methods to create a new <h1> element:
-        // Create a new H1 element
-        const header = document.createElement('h1');
-    
-        // Create a new text node for the H1 element
-        const text = 'Develop. Preview. Ship.';
-        const headerContent = document.createTextNode(text);
-    
-        // Append the text to the H1 element
-        header.appendChild(headerContent);
-    
-        // Place the H1 element inside the div
-        app.appendChild(header);
+    <!-- This module script imports React and ReactDOM, initializes a React root, and renders JSX into the #app div. -->
+    <!-- This script uses Babel Standalone to transpile JSX and resolve ES module imports through the import map. -->
+    <script type="text/babel" data-type="module" data-presets="react">
+      import React from 'react';
+      import { createRoot } from 'react-dom/client';
+ 
+      const domNode = document.getElementById('app');
+      const root = createRoot(domNode);
+      root.render(<h1>Develop. Preview. Ship.</h1>);
     </script>
 </body>
 </html>

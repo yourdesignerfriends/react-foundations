@@ -30,9 +30,10 @@
         const domNode = document.getElementById('app');
 
         //In React, components are functions. Inside your script tag, create a new function called header:
-        function Header() {
+        function Header({ title }) {
             // A component is a function that returns UI elements. Inside the return statement of the function, you can write JSX:
-            return <h1>Develop. Preview. Ship. Analina.</h1>;
+            console.log({ title });
+            return <h1>{title}</h1>;
         }
 
         // The HomePage component is the top-level component of the app. 
@@ -41,10 +42,17 @@
         //  reusable pieces. HomePage acts as the parent component, and Header 
         //  is one of its child components.
         function HomePage() {
+            const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+
             return (
                 <div>
                     {/* Nesting the Header component */}
-                    <Header />
+                    <Header title="Develop. Preview. Ship." />
+                        <ul>
+                            {names.map((name) => (
+                            <li key={name}>{name}</li>
+                            ))}
+                        </ul>
                 </div>
             );
         }
